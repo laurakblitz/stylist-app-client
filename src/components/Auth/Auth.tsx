@@ -1,35 +1,66 @@
 import React, { Component } from 'react';
+import { isPropertyAccessExpression } from 'typescript';
+import { Container } from '@material-ui/core';
+import Paper from '@material-ui/core/Paper'
 import Login from './Login';
 import Register from './Register';
 
-type UserProps = {
-    isLogin: boolean;
+type AuthState = {
+    Login: boolean;
 }
 
-type AppProps = {
+type AuthProps = {
     updateToken: (newToken: string) => void;
 };
 
-export default class Auth extends React.Component<AppProps, UserProps> {
+export default class Auth extends React.Component<AuthProps, AuthState> {
     constructor(props: any) {
         super(props);
         this.state = {
-            isLogin: true
+            Login: true
         };
     }
 
-    loginToggle = () => {
+    toggle = () => {
         this.setState({
-            isLogin: !this.state.isLogin
+            Login: !this.state.Login
         });
     }
 
     render() {
+        const text = this.state.Login ? 'Want to Register?' : 'I have an account';
         return (
-            <div>
-                <Login updateToken={this.props.updateToken} />
-                <Register updateToken={this.props.updateToken} />
+            <div className="container">
+                <Paper className="root" elevation={12}>
+                    <Login updateToken={this.props.updateToken} />
+                    <Register updateToken={this.props.updateToken} />
+                    <p onClick={this.toggle}></p>
+                </Paper>
+                {/* <Container>
+                    {this.state.isLogin ? (
+                        <Login
+                            isLogin={this.state.isLogin}
+                            loginToggle={this.loginToggle.bind(this)}
+                            updateToken={this.props.updateToken}
+                        />
+                    ) : (
+                            <Register
+                                isLogin={this.state.isLogin}
+                                loginToggle={this.loginToggle.bind(this)}
+                                updateToken={this.props.updateToken}
+                            />
+                        )}
+                    <Login
+                        isLogin={this.state.isLogin}
+                        loginToggle={this.loginToggle.bind(this)}
+                        updateToken={this.props.updateToken} />
+                    <Register
+                        isLogin={this.state.isLogin}
+                        loginToggle={this.loginToggle.bind(this)}
+                        updateToken={this.props.updateToken} />
+                </Container> */}
             </div>
         )
     }
 }
+

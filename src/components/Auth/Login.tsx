@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-import {Button, TextField, Typography} from '@material-ui/core';
+import { Button, Container, TextField, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from '@material-ui/core';
 
 type LoginProps = {
-    updateToken: (newToken: string) => void
+    //isLogin: boolean,
+    updateToken: (newToken: string) => void,
+    //toggle: () => void
 }
 
 type LoginState = {
     username: string,
     password: string,
+    handleopen: boolean
 }
 
 export default class Login extends React.Component<LoginProps, LoginState> {
@@ -15,7 +18,8 @@ export default class Login extends React.Component<LoginProps, LoginState> {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            handleopen: false
         }
     }
 
@@ -35,8 +39,21 @@ export default class Login extends React.Component<LoginProps, LoginState> {
             .then(data => {
                 console.log(data)
                 this.props.updateToken(data.sessionToken)
-            })
+                this.handleOpen()
+            });
     }
+
+    handleOpen = () => {
+        this.setState({
+            handleopen: true,
+        })
+    };
+
+    handleClose = () => {
+        this.setState({
+            handleopen: false,
+        });
+    };
 
     setUsername(event: string) {
         this.setState({
@@ -52,30 +69,37 @@ export default class Login extends React.Component<LoginProps, LoginState> {
     render() {
         return (
             <div>
-                <form onSubmit={(event) => this.handleChange(event)}>
-                    <Typography variant="h5" component="h5">
-                        Login
-                </Typography>
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        label="Username"
-                        type="text"
-                        fullWidth
-                        onChange={(e) => this.setUsername(e.target.value)}
-                    />
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        label="Password"
-                        type="password"
-                        fullWidth
-                        onChange={(e) => this.setPassword(e.target.value)}
-                    />
-                    <Button type="submit" color="primary">
-                        Login
-                    </Button>
-                </form>
+                <Button onClick={this.handleOpen} id="LoginButton">
+                    <strong>LOGIN</strong>
+                </Button>
+                <Dialog open={this.state.handleopen} onClose={this.handleClose}>
+                    <DialogTitle id="dialogTitle">
+                        <strong>LOGIN</strong>
+                    </DialogTitle>
+                    <DialogContent id="Login">
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            label="Username"
+                            type="text"
+                            fullWidth
+                            onChange={(e) => this.setUsername(e.target.value)}
+                        />
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            label="Password"
+                            type="password"
+                            fullWidth
+                            onChange={(e) => this.setPassword(e.target.value)}
+                        />
+                    </DialogContent>
+                    <DialogActions id="Loginbtn">
+                        <Button onClick={this.handleChange} id="btn">
+                            <strong>Login</strong>
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </div>
         )
     }
