@@ -1,20 +1,28 @@
-import React, { Component } from 'react';
-import { Button, Container, TextField, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from '@material-ui/core';
+import React from 'react';
+import { 
+    Button, 
+    // Container,  
+    Dialog, 
+    DialogActions, 
+    DialogContent, 
+    DialogTitle, 
+    TextField,
+    /*Typography*/ } from '@material-ui/core';
 
-type LoginProps = {
+type Props = {
     //isLogin: boolean,
     updateToken: (newToken: string) => void,
     //toggle: () => void
 }
 
-type LoginState = {
+type State = {
     username: string,
     password: string,
     handleopen: boolean
 }
 
-export default class Login extends React.Component<LoginProps, LoginState> {
-    constructor(props: any) {
+export default class Login extends React.Component<Props, State> {
+    constructor(props: Props) {
         super(props);
         this.state = {
             username: '',
@@ -23,7 +31,7 @@ export default class Login extends React.Component<LoginProps, LoginState> {
         }
     }
 
-    handleChange = (event: any) => {
+    handleSubmit = (event: any) => {
         event.preventDefault();
         fetch('http://localhost:3005/user/login', {
             method: 'POST',
@@ -38,8 +46,8 @@ export default class Login extends React.Component<LoginProps, LoginState> {
             .then((res) => res.json())
             .then(data => {
                 console.log(data)
-                this.props.updateToken(data.sessionToken)
-                this.handleOpen()
+                this.props.updateToken(data.token);
+                this.handleClose();
             });
     }
 
@@ -95,7 +103,7 @@ export default class Login extends React.Component<LoginProps, LoginState> {
                         />
                     </DialogContent>
                     <DialogActions id="Loginbtn">
-                        <Button onClick={this.handleChange} id="btn">
+                        <Button onClick={this.handleSubmit} id="btn">
                             <strong>Login</strong>
                         </Button>
                     </DialogActions>

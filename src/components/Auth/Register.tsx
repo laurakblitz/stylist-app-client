@@ -1,13 +1,21 @@
-import React, { Component } from 'react';
-import { Button, Container, TextField, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from '@material-ui/core';
+import React from 'react';
+import { 
+    Button, 
+    Container,  
+    Dialog, 
+    DialogActions, 
+    DialogContent, 
+    DialogTitle, 
+    TextField,
+    Typography } from '@material-ui/core';
 
-type RegisterProps = {
+type Props = {
     //Login: boolean,
     updateToken: (newToken: string) => void,
     //toggle: () => void
 }
 
-type RegisterState = {
+type State = {
     username: string,
     email: string,
     password: string,
@@ -15,8 +23,8 @@ type RegisterState = {
     handleopen: boolean,
 }
 
-export default class Register extends React.Component<RegisterProps, RegisterState> {
-    constructor(props: any) {
+export default class Register extends React.Component<Props, State> {
+    constructor(props: Props) {
         super(props);
         this.state = {
             username: '',
@@ -27,7 +35,7 @@ export default class Register extends React.Component<RegisterProps, RegisterSta
         }
     }
 
-    handleChange = (event: any) => {
+    handleSubmit = (event: any) => {
         event.preventDefault();
         fetch('http://localhost:3005/user/register', {
             method: 'POST',
@@ -44,7 +52,7 @@ export default class Register extends React.Component<RegisterProps, RegisterSta
             .then(data => {
                 console.log(data)
                 this.handleClose();
-                // this.props.updateToken(data.sessionToken)
+                this.props.updateToken(data.sessionToken)
             })
     }
 
@@ -113,7 +121,7 @@ export default class Register extends React.Component<RegisterProps, RegisterSta
                         />
                     </DialogContent>
                     <DialogActions id="Registerbtn">
-                        <Button onClick={this.handleChange} id="btn">
+                        <Button onClick={this.handleSubmit} id="btn">
                             <strong>Sign Up</strong>
                         </Button>
                     </DialogActions>

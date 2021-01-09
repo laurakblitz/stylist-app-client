@@ -1,21 +1,18 @@
-import React, { Component } from 'react';
-import {BrowserRouter as Router} from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
 
-import Auth from './components/Auth/Auth';
 import Home from './components/Home/Home';
-import Navbar from './components/Navbar/Navbar';
-
 
 export default class App extends React.Component {
     state = {
-        sessionToken: ''
+        token: ''
     }
 
     componentWillMount() {
         if (localStorage.getItem('token')) {
             this.setState({
-                sessionToken: localStorage.getItem('token')
+                token: localStorage.getItem('token')
             })
         }
     }
@@ -23,32 +20,25 @@ export default class App extends React.Component {
     updateToken = (newToken: string) => {
         localStorage.setItem('token', newToken)
         this.setState({
-            sessionToken: newToken
+            token: newToken
         })
     }
 
-    logout = () => {
+    clearToken = () => {
         localStorage.clear();
         this.setState({
-            sessionToken: ''
+            token: ''
         })
     }
 
-    protectedViews = () => {
-        return (
-            this.state.sessionToken === localStorage.getItem('token') ?
-                <div>
-                    <Router>
-                        <Home clickLogout={this.logout.bind(this)} token={this.state.sessionToken} />
-                    </Router>
-                </div>
-                : <Auth updateToken={this.updateToken.bind(this)} />
-        );
-    }
     render() {
         return (
             <div>
-                {this.protectedViews()}
+                <header className="app-header">
+                    <Router>
+                        <Home clearToken={this.clearToken.bind(this)} updateToken={this.updateToken.bind(this)} token={this.state.token} />
+                    </Router>
+                </header>
             </div>
         );
     }
