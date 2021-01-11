@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-    Button,
     List,
     ListItem,
 } from '@material-ui/core';
@@ -15,7 +14,6 @@ type Props = {
 
 type State = {
     myCloset: any,
-    // myCloset: Array<{ image: string, category: string, userId: number }>
     updateCloset: any,
     closetCreate: any,
     updateActive: boolean,
@@ -89,16 +87,12 @@ export default class ClosetIndex extends React.Component<Props, State> {
         return (
             <List>
                 <ListItem>
-                    <Button className="primary-btn" onClick={() => this.createOn()}>Add a Closet Post</Button>
-                </ListItem>
-                <ListItem>
-                    {this.state.createActive ?
-                        <ClosetCreate
-                            closetCreate={this.state.closetCreate}
-                            fetchClosetPosts={this.fetchClosetPosts.bind(this)}
-                            token={this.props.token}
-                            createOff={this.createOff.bind(this)}
-                        /> : <></>}
+                    <ClosetCreate
+                        closetCreate={this.state.closetCreate}
+                        fetchClosetPosts={this.fetchClosetPosts.bind(this)}
+                        token={this.props.token}
+                        createOff={this.createOff.bind(this)}
+                    />
                     <ClosetTable
                         myCloset={this.state.myCloset}
                         editUpdateCloset={this.editUpdateCloset.bind(this)}
@@ -117,3 +111,8 @@ export default class ClosetIndex extends React.Component<Props, State> {
         )
     }
 }
+
+// myCloset: Array<{ image: string, category: string, userId: number }>
+//<ListItem>
+//    <Button className="primary-btn" onClick={() => this.createOn()}>Add a Closet Post</Button>
+//</ListItem>

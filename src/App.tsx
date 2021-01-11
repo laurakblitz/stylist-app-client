@@ -10,13 +10,13 @@ type Props = {
     token: string | null
 }
 
-    export default class App extends React.Component<{}, Props> {
-        constructor(props: any) {
-            super(props);
-            this.state = {
-                token: ''
-            }
+export default class App extends React.Component<{}, Props> {
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            token: ''
         }
+    }
 
     componentDidMount() {
         if (localStorage.getItem('token')) {
@@ -40,16 +40,6 @@ type Props = {
         })
     }
 
-    // protectedViews = () => {
-    //     return (this.state.sessionToken === localStorage.getItem('token') ?
-    //         <div className="App">
-    //             <Router>
-    //                 <Home clickLogout={this.logout.bind(this)} token={this.state.sessionToken} />
-    //             </Router>
-    //         </div>
-    //         : <Auth updateToken={this.updateToken.bind(this)} />)
-    // }
-
     viewConductor = () => {
         return (!this.state.token ?
             <div>
@@ -61,8 +51,6 @@ type Props = {
     }
 
     render() {
-        // const protectedViews = !this.state.sessionToken ? <Auth updateToken={this.updateToken.bind(this)}/> : <Home clickLogout={this.logout.bind(this)}  token={this.state.sessionToken}/>
-
         return (
             <div>
                 {this.viewConductor()}

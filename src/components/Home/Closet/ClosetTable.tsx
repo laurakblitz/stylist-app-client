@@ -34,11 +34,11 @@ export default class ClosetTable extends React.Component<Props> {
         return closets.map((closet: any, index: number) => {
             return (
                 <Card key={index}>
-                    <CardContent><img src={closet.image} width="50" height="50%" /></CardContent>
+                    <CardContent><img src={closet.image} width="25%" height="25%" /></CardContent>
                     <CardContent>{closet.category}</CardContent>
                     <CardContent>
-                        <Button onClick={() => { this.props.editUpdateCloset(closet); this.props.updateOn() }}>Edit</Button>
-                        <Button onClick={() => { this.deletePost(closet) }}>Clear</Button>
+                        <Button variant="outlined" onClick={() => { this.props.editUpdateCloset(closet); this.props.updateOn() }}>Edit</Button>
+                        <Button variant="outlined" onClick={() => { this.deletePost(closet) }}>Clear</Button>
                     </CardContent>
                 </Card>
             )

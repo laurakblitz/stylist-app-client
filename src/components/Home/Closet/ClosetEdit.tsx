@@ -37,7 +37,6 @@ export default class ClosetEdit extends React.Component<Props, State> {
             method: 'PUT',
             body: editCloset,
             headers: new Headers({
-                // 'Content-Type': 'application/json',
                 'Authorization': this.props.token
             })
         }).then(() => {
@@ -94,9 +93,4 @@ export default class ClosetEdit extends React.Component<Props, State> {
     }
 }
 
-{/* <DialogTitle id="EditPopup">
-                        Edit Closet Post
-                    <IconButton className="exit-btn" onClick={this.editClosetForm}>
-                            <ClearIcon />
-                        </IconButton>
-                    </DialogTitle> */}
+// 'Content-Type': 'application/json',

@@ -40,18 +40,15 @@ export default class ClosetCreate extends React.Component<Props, State> {
             method: 'POST',
             body: closetData,
             headers: new Headers({
-                // 'Content-Type': 'application/json',
                 'Authorization': this.props.token,
             }),
         })
             .then((res) => res.json())
             .then((data) => {
                 this.setState({
-                    // image: '',
                     category: ''
                 })
                 console.log(data)
-                // this.props.fetchClosetPosts();
                 this.handleClose();
             });
     }
@@ -89,7 +86,7 @@ export default class ClosetCreate extends React.Component<Props, State> {
     render() {
         return (
             <div className="container">
-                <Button onClick={this.handleOpen} id="CreateButton" variant="outlined">Create a Closet Post</Button>
+                <Button onClick={this.handleOpen} id="CreateButton" variant="outlined">Add to your closet</Button>
                 <Dialog open={this.state.handleopen} onClose={this.handleClose}>
                     <DialogTitle id="CreatePopup">
                         Create Post
@@ -101,13 +98,6 @@ export default class ClosetCreate extends React.Component<Props, State> {
                             multiple
                             type="file"
                             onChange={this.singleFileChangeHandler} />
-                        {/* <TextField
-                            margin="dense"
-                            label="Image"
-                            type="text"
-                            fullWidth
-                            onChange={(e) => this.setFile(e.target.value)}
-                        /> */}
                         <TextField
                             margin="dense"
                             label="Category"
@@ -124,3 +114,7 @@ export default class ClosetCreate extends React.Component<Props, State> {
         );
     }
 }
+
+// 'Content-Type': 'application/json',
+// image: '',
+  // this.props.fetchClosetPosts();
