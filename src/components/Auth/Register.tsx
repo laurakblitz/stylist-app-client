@@ -1,18 +1,18 @@
 import React from 'react';
 import { 
     Button, 
-    Container,  
+    // Container,  
     Dialog, 
     DialogActions, 
     DialogContent, 
     DialogTitle, 
     TextField,
-    Typography } from '@material-ui/core';
+    /*Typography*/ } from '@material-ui/core';
 
 type Props = {
-    //Login: boolean,
+    login: boolean,
     updateToken: (newToken: string) => void,
-    //toggle: () => void
+    toggle: () => void
 }
 
 type State = {
@@ -52,7 +52,7 @@ export default class Register extends React.Component<Props, State> {
             .then(data => {
                 console.log(data)
                 this.handleClose();
-                this.props.updateToken(data.sessionToken)
+                this.props.updateToken(data.token)
             })
     }
 

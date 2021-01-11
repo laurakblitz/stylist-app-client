@@ -10,9 +10,10 @@ import {
     /*Typography*/ } from '@material-ui/core';
 
 type Props = {
-    //isLogin: boolean,
+    login: boolean,
     updateToken: (newToken: string) => void,
-    //toggle: () => void
+    // loginHandle: () => void
+    toggle: () => void
 }
 
 type State = {

@@ -1,17 +1,25 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import {
+    Button,
+    List,
+    ListItem,
+} from '@material-ui/core';
 
 import ClosetCreate from './ClosetCreate';
+import ClosetEdit from './ClosetEdit';
+import ClosetTable from './ClosetTable';
 
 type Props = {
-    updateToken: (newToken: string) => void,
-    clearToken: () => void,
-    token: string
+    token: string;
 }
 
 type State = {
-    myCloset: Array<{ image: string, category: string }>
-    // closetCreate: Array<{image: string, category: string}>,
+    myCloset: any,
+    // myCloset: Array<{ image: string, category: string, userId: number }>
+    updateCloset: any,
+    closetCreate: any,
+    updateActive: boolean,
+    createActive: boolean,
 }
 
 export default class ClosetIndex extends React.Component<Props, State> {
@@ -19,7 +27,10 @@ export default class ClosetIndex extends React.Component<Props, State> {
         super(props);
         this.state = {
             myCloset: [],
-            // closetCreate: [],
+            updateCloset: {},
+            closetCreate: {},
+            updateActive: false,
+            createActive: false,
         }
     }
 
@@ -31,12 +42,12 @@ export default class ClosetIndex extends React.Component<Props, State> {
                 'Authorization': this.props.token
             })
         })
-            .then(res => res.json())
-            .then(data => {
+            .then((res) => res.json())
+            .then(closetData => {
                 this.setState({
-                    myCloset: data.closet
+                    myCloset: closetData.closets
                 })
-                console.log(this.state.myCloset)
+                console.log('Closet Posts:', this.state.myCloset)
             })
     }
 
@@ -44,13 +55,65 @@ export default class ClosetIndex extends React.Component<Props, State> {
         this.fetchClosetPosts()
     }
 
+    editUpdateCloset = (closet: any) => {
+        this.setState({
+            updateCloset: closet
+        })
+    }
+
+    updateOn = () => {
+        this.setState({
+            updateActive: true
+        })
+    }
+
+    updateOff = () => {
+        this.setState({
+            updateActive: false
+        })
+    }
+
+    createOff = () => {
+        this.setState({
+            createActive: false
+        })
+    }
+
+    createOn = () => {
+        this.setState({
+            createActive: true
+        })
+    }
+
     render() {
         return (
-            <div>
-                <Router>
-                    <ClosetCreate token={this.props.token} />
-                </Router>
-            </div>
+            <List>
+                <ListItem>
+                    <Button className="primary-btn" onClick={() => this.createOn()}>Add a Closet Post</Button>
+                </ListItem>
+                <ListItem>
+                    {this.state.createActive ?
+                        <ClosetCreate
+                            closetCreate={this.state.closetCreate}
+                            fetchClosetPosts={this.fetchClosetPosts.bind(this)}
+                            token={this.props.token}
+                            createOff={this.createOff.bind(this)}
+                        /> : <></>}
+                    <ClosetTable
+                        myCloset={this.state.myCloset}
+                        editUpdateCloset={this.editUpdateCloset.bind(this)}
+                        updateOn={this.updateOn.bind(this)}
+                        fetchClosetPosts={this.fetchClosetPosts.bind(this)}
+                        token={this.props.token} />
+                </ListItem>
+                {this.state.updateActive ?
+                    <ClosetEdit
+                        updateCloset={this.state.updateCloset}
+                        updateOff={this.updateOff.bind(this)}
+                        fetchClosetPosts={this.fetchClosetPosts.bind(this)}
+                        token={this.props.token}
+                    /> : <></>}
+            </List>
         )
     }
 }

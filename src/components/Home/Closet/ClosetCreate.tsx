@@ -1,18 +1,18 @@
 import React from 'react';
 import {
     Button,
-    Container,
     Dialog,
     DialogActions,
     DialogContent,
     DialogTitle,
-    IconButton,
     TextField,
-    Typography
 } from '@material-ui/core';
 
 type Props = {
-    token: string,
+    closetCreate: any;
+    fetchClosetPosts: () => void;
+    token: string;
+    createOff: () => void
 }
 
 type State = {
@@ -33,9 +33,7 @@ export default class ClosetCreate extends React.Component<Props, State> {
 
     handleSubmit = (event: React.SyntheticEvent) => {
         event.preventDefault();
-        // const upload = document.getElementById('upload')
         const closetData = new FormData();
-        // closetData.append('image', upload.files[0])
         closetData.append('image', this.state.image)
         closetData.append('category', this.state.category)
         fetch('http://localhost:3005/closet/upload', {
@@ -47,12 +45,13 @@ export default class ClosetCreate extends React.Component<Props, State> {
             }),
         })
             .then((res) => res.json())
-            .then(data => {
+            .then((data) => {
                 this.setState({
                     // image: '',
                     category: ''
                 })
                 console.log(data)
+                // this.props.fetchClosetPosts();
                 this.handleClose();
             });
     }
