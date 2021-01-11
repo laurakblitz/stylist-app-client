@@ -9,10 +9,8 @@ import {
 } from '@material-ui/core';
 
 type Props = {
-    closetCreate: any;
     fetchClosetPosts: () => void;
     token: string;
-    createOff: () => void
 }
 
 type State = {
@@ -114,7 +112,3 @@ export default class ClosetCreate extends React.Component<Props, State> {
         );
     }
 }
-
-// 'Content-Type': 'application/json',
-// image: '',
-  // this.props.fetchClosetPosts();

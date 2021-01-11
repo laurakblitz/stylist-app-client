@@ -15,9 +15,7 @@ type Props = {
 type State = {
     myCloset: any,
     updateCloset: any,
-    closetCreate: any,
     updateActive: boolean,
-    createActive: boolean,
 }
 
 export default class ClosetIndex extends React.Component<Props, State> {
@@ -26,9 +24,7 @@ export default class ClosetIndex extends React.Component<Props, State> {
         this.state = {
             myCloset: [],
             updateCloset: {},
-            closetCreate: {},
             updateActive: false,
-            createActive: false,
         }
     }
 
@@ -71,28 +67,15 @@ export default class ClosetIndex extends React.Component<Props, State> {
         })
     }
 
-    createOff = () => {
-        this.setState({
-            createActive: false
-        })
-    }
-
-    createOn = () => {
-        this.setState({
-            createActive: true
-        })
-    }
-
     render() {
         return (
             <List>
                 <ListItem>
                     <ClosetCreate
-                        closetCreate={this.state.closetCreate}
                         fetchClosetPosts={this.fetchClosetPosts.bind(this)}
-                        token={this.props.token}
-                        createOff={this.createOff.bind(this)}
-                    />
+                        token={this.props.token} />
+                </ListItem>
+                <ListItem>
                     <ClosetTable
                         myCloset={this.state.myCloset}
                         editUpdateCloset={this.editUpdateCloset.bind(this)}
@@ -100,19 +83,16 @@ export default class ClosetIndex extends React.Component<Props, State> {
                         fetchClosetPosts={this.fetchClosetPosts.bind(this)}
                         token={this.props.token} />
                 </ListItem>
-                {this.state.updateActive ?
-                    <ClosetEdit
-                        updateCloset={this.state.updateCloset}
-                        updateOff={this.updateOff.bind(this)}
-                        fetchClosetPosts={this.fetchClosetPosts.bind(this)}
-                        token={this.props.token}
-                    /> : <></>}
+                <ListItem>
+                    {this.state.updateActive ?
+                        <ClosetEdit
+                            updateCloset={this.state.updateCloset}
+                            updateOff={this.updateOff.bind(this)}
+                            fetchClosetPosts={this.fetchClosetPosts.bind(this)}
+                            token={this.props.token}
+                        /> : <></>}
+                </ListItem>
             </List>
         )
     }
 }
-
-// myCloset: Array<{ image: string, category: string, userId: number }>
-//<ListItem>
-//    <Button className="primary-btn" onClick={() => this.createOn()}>Add a Closet Post</Button>
-//</ListItem>

@@ -1,13 +1,12 @@
 import React from 'react';
-import { 
+import {
     Button, 
-    // Container,  
-    Dialog, 
-    DialogActions, 
-    DialogContent, 
-    DialogTitle, 
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
     TextField,
-    /*Typography*/ } from '@material-ui/core';
+} from '@material-ui/core';
 
 type Props = {
     login: boolean,
@@ -19,7 +18,7 @@ type State = {
     username: string,
     email: string,
     password: string,
-    role: boolean,
+    // role: string,
     handleopen: boolean,
 }
 
@@ -30,7 +29,7 @@ export default class Register extends React.Component<Props, State> {
             username: '',
             email: '',
             password: '',
-            role: false,
+            // role: '',
             handleopen: false,
         }
     }
@@ -42,7 +41,8 @@ export default class Register extends React.Component<Props, State> {
             body: JSON.stringify({
                 username: this.state.username,
                 email: this.state.email,
-                password: this.state.password
+                password: this.state.password,
+                // role: this.state.role,
             }),
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -119,6 +119,10 @@ export default class Register extends React.Component<Props, State> {
                             fullWidth
                             onChange={(e) => this.setPassword(e.target.value)}
                         />
+                        {/* <input
+                            placeholder="User/Admin"
+                            onChange={(e) => this.setState({role: e.target.value})}
+                        /> */}
                     </DialogContent>
                     <DialogActions id="Registerbtn">
                         <Button onClick={this.handleSubmit} id="btn">
