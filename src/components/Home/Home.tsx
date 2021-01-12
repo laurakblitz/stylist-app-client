@@ -3,6 +3,7 @@ import { BrowserRouter as Router, /*Route, Switch*/ } from 'react-router-dom';
 
 import Navbar from './Navbar';
 import ClosetIndex from './Closet/ClosetIndex';
+import WishlistIndex from './Wishlist/WishlistIndex';
 
 type Props = {
     clickLogout: () => void;
@@ -17,6 +18,7 @@ export default class Home extends React.Component<Props> {
                 <Router>
                         <Navbar onClick={this.props.clickLogout} token={this.props.token} />
                         <ClosetIndex token={this.props.token} />
+                        <WishlistIndex token={this.props.token} />
                 </Router>
             </React.Fragment>
             </div>
