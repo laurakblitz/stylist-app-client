@@ -48,6 +48,7 @@ export default class ClosetCreate extends React.Component<Props, State> {
                 })
                 console.log(data)
                 this.handleClose();
+                this.props.fetchClosetPosts();
             });
     }
 
