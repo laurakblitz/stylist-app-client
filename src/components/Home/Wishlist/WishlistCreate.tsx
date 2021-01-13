@@ -1,4 +1,5 @@
 import React from 'react';
+import APIURL from '../../../helpers/environment';
 import {
     Button,
     Dialog,
@@ -34,7 +35,7 @@ export default class WishlistCreate extends React.Component<Props, State> {
         const wishlistData = new FormData();
         wishlistData.append('image', this.state.image)
         wishlistData.append('comment', this.state.comment)
-        fetch('http://localhost:3005/wishlist/upload', {
+        fetch(`${APIURL}/wishlist/upload`, {
             method: 'POST',
             body: wishlistData,
             headers: new Headers({

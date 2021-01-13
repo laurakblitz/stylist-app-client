@@ -1,4 +1,5 @@
 import React from 'react';
+import APIURL from '../../helpers/environment';
 import {
     Button, 
     Dialog,
@@ -36,7 +37,7 @@ export default class Register extends React.Component<Props, State> {
 
     handleSubmit = (event: any) => {
         event.preventDefault();
-        fetch('http://localhost:3005/user/register', {
+        fetch(`${APIURL}/user/register`, {
             method: 'POST',
             body: JSON.stringify({
                 username: this.state.username,

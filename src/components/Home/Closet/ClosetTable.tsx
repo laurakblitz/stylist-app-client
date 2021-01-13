@@ -1,4 +1,5 @@
 import React from 'react';
+import APIURL from '../../../helpers/environment';
 import {
     Button,
     Card,
@@ -21,7 +22,7 @@ export default class ClosetTable extends React.Component<Props> {
     }
 
     deletePost = (closet: any) => {
-        fetch(`http://localhost:3005/closet/delete/${closet.id}`, {
+        fetch(`${APIURL}/closet/delete/${closet.id}`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',

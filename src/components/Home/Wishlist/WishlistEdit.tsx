@@ -1,4 +1,5 @@
 import React from 'react';
+import APIURL from '../../../helpers/environment';
 import {
     Button,
     FormGroup,
@@ -33,7 +34,7 @@ export default class WishlistEdit extends React.Component<Props, State> {
         const editWishlist = new FormData()
         editWishlist.append('image', this.state.image)
         editWishlist.append('comment', this.state.editComment)
-        fetch(`http://localhost:3005/wishlist/update/${this.props.updateWishlist.id}`, {
+        fetch(`${APIURL}/wishlist/update/${this.props.updateWishlist.id}`, {
             method: 'PUT',
             body: editWishlist,
             headers: new Headers({

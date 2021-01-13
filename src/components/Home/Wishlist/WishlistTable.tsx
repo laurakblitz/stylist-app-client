@@ -1,4 +1,5 @@
 import React from 'react';
+import APIURL from '../../../helpers/environment';
 import {
     Button,
     Card,
@@ -19,7 +20,7 @@ export default class WishlistTable extends React.Component<Props> {
     }
 
     deletePost = (wishlist: any) => {
-        fetch(`http://localhost:3005/wishlist/delete/${wishlist.id}`, {
+        fetch(`${APIURL}/wishlist/delete/${wishlist.id}`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',

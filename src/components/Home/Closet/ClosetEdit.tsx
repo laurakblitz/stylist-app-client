@@ -1,4 +1,5 @@
 import React from 'react';
+import APIURL from '../../../helpers/environment';
 import {
     Button,
     Dialog,
@@ -42,7 +43,7 @@ export default class ClosetEdit extends React.Component<Props, State> {
         const editCloset = new FormData()
         editCloset.append('image', this.state.image)
         editCloset.append('category', this.state.editCategory)
-        fetch(`http://localhost:3005/closet/update/${this.props.updateCloset.id}`, {
+        fetch(`${APIURL}/closet/update/${this.props.updateCloset.id}`, {
             method: 'PUT',
             body: editCloset,
             headers: new Headers({

@@ -1,4 +1,5 @@
 import React from 'react';
+import APIURL from '../../../helpers/environment';
 import {
     Button,
     Dialog,
@@ -40,7 +41,7 @@ export default class ClosetCreate extends React.Component<Props, State> {
         const closetData = new FormData();
         closetData.append('image', this.state.image)
         closetData.append('category', this.state.category)
-        fetch('http://localhost:3005/closet/upload', {
+        fetch(`${APIURL}/closet/upload`, {
             method: 'POST',
             body: closetData,
             headers: new Headers({
@@ -97,13 +98,13 @@ export default class ClosetCreate extends React.Component<Props, State> {
                         Add to closet!
                     </DialogTitle>
                     <DialogContent id="Create">
-                        <input
-                            accept="image/*"
-                            className="input"
-                            id="contained-button-file"
-                            type="file"
-                            onChange={this.singleFileChangeHandler} />
                         <label htmlFor="icon-button-file">
+                            <input
+                                accept="image/*"
+                                className="input"
+                                id="contained-button-file"
+                                type="file"
+                                onChange={this.singleFileChangeHandler} />
                             <IconButton color="primary" aria-label="upload picture" component="span">
                                 <PhotoCamera />
                             </IconButton>

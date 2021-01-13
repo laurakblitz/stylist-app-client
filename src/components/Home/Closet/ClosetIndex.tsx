@@ -1,4 +1,5 @@
 import React from 'react';
+import APIURL from '../../../helpers/environment';
 import {
     List,
     ListItem,
@@ -29,7 +30,7 @@ export default class ClosetIndex extends React.Component<Props, State> {
     }
 
     fetchClosetPosts = () => {
-        fetch('http://localhost:3005/closet/allclosetposts', {
+        fetch(`${APIURL}/closet/allclosetposts`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',

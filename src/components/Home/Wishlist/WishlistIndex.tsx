@@ -1,4 +1,5 @@
 import React from 'react';
+import APIURL from '../../../helpers/environment';
 import {
     List,
     ListItem,
@@ -29,7 +30,7 @@ export default class WishlistIndex extends React.Component<Props, State> {
     }
 
     fetchWishlistPosts = () => {
-        fetch('http://localhost:3005/wishlist/allwishlist', {
+        fetch(`${APIURL}/wishlist/allwishlist`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
