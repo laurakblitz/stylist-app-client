@@ -5,8 +5,14 @@ import {
     DialogActions,
     DialogContent,
     DialogTitle,
-    TextField,
+    FormLabel,
+    FormControl,
+    FormControlLabel,
+    Radio,
+    RadioGroup,
 } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
 type Props = {
     fetchClosetPosts: () => void;
@@ -85,28 +91,39 @@ export default class ClosetCreate extends React.Component<Props, State> {
     render() {
         return (
             <div className="container">
-                <Button onClick={this.handleOpen} id="CreateButton" variant="outlined">Add to your closet</Button>
+                <Button onClick={this.handleOpen} id="CreateButton" variant="outlined">Add To Your Digital Closet</Button>
                 <Dialog open={this.state.handleopen} onClose={this.handleClose}>
                     <DialogTitle id="CreatePopup">
-                        Create Post
+                        Add to closet!
                     </DialogTitle>
                     <DialogContent id="Create">
                         <input
                             accept="image/*"
                             className="input"
-                            multiple
+                            id="contained-button-file"
                             type="file"
                             onChange={this.singleFileChangeHandler} />
-                        <TextField
-                            margin="dense"
-                            label="Category"
-                            type="text"
-                            fullWidth
-                            onChange={(e) => this.setCategory(e.target.value)}
-                        />
+                        <label htmlFor="icon-button-file">
+                            <IconButton color="primary" aria-label="upload picture" component="span">
+                                <PhotoCamera />
+                            </IconButton>
+                        </label>
+                        <br />
+                        <br />
+                        <FormControl component="fieldset">
+                            <FormLabel component="legend">Category</FormLabel>
+                            <RadioGroup defaultValue="Category" aria-label="Category" name="customized-radios" onChange={(e) => this.setCategory(e.target.value)}>
+                                <FormControlLabel value="Shirt" control={<Radio />} label="Shirt" />
+                                <FormControlLabel value="Pants" control={<Radio />} label="Pants" />
+                                <FormControlLabel value="Dress" control={<Radio />} label="Dress" />
+                                <FormControlLabel value="Outerwear" control={<Radio />} label="Outerwear" />
+                            </RadioGroup>
+                        </FormControl>
                     </DialogContent>
                     <DialogActions id="Createbtn">
-                        <Button onClick={this.handleSubmit} id="btn">Submit</Button>
+                        <label htmlFor="contained-button-file">
+                            <Button onClick={this.handleSubmit} variant="contained" color="primary" component="span">Upload</Button>
+                        </label>
                     </DialogActions>
                 </Dialog>
             </div>
