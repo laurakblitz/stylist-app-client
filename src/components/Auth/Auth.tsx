@@ -38,13 +38,11 @@ export default class Auth extends React.Component<Props, State> {
                     <Login
                         login={this.state.login}
                         toggle={this.toggle.bind(this)}
-                        updateToken={this.props.updateToken}
-                    />
+                        updateToken={this.props.updateToken}/>
                         <Register
                             login={this.state.login}
                             toggle={this.toggle.bind(this)}
-                            updateToken={this.props.updateToken}
-                        />
+                            updateToken={this.props.updateToken}/>
             </div>
         );
         // return (

@@ -8,6 +8,8 @@ import {
     DialogTitle,
     TextField,
 } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
 type Props = {
     fetchWishlistPosts: () => void;
@@ -89,15 +91,20 @@ export default class WishlistCreate extends React.Component<Props, State> {
                 <Button onClick={this.handleOpen} id="CreateButton" variant="outlined">Add to your wishlist</Button>
                 <Dialog open={this.state.handleopen} onClose={this.handleClose}>
                     <DialogTitle id="CreatePopup">
-                        Create Post
+                        Add wishlist item!
                     </DialogTitle>
                     <DialogContent id="Create">
-                        <input
-                            accept="image/*"
-                            className="input"
-                            multiple
-                            type="file"
-                            onChange={this.singleFileChangeHandler} />
+                        <label htmlFor="icon-button-file">
+                            <input
+                                accept="image/*"
+                                className="input"
+                                id="contained-button-file"
+                                type="file"
+                                onChange={this.singleFileChangeHandler} />
+                            <IconButton color="primary" aria-label="upload picture" component="span">
+                                <PhotoCamera />
+                            </IconButton>
+                        </label>
                         <TextField
                             margin="dense"
                             label="Comment"
@@ -107,7 +114,9 @@ export default class WishlistCreate extends React.Component<Props, State> {
                         />
                     </DialogContent>
                     <DialogActions id="Createbtn">
-                        <Button onClick={this.handleSubmit} id="btn">Submit</Button>
+                        <label htmlFor="contained-button-file">
+                            <Button onClick={this.handleSubmit} variant="contained" color="primary" component="span">Upload</Button>
+                        </label>
                     </DialogActions>
                 </Dialog>
             </div>

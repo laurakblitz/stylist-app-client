@@ -92,7 +92,7 @@ export default class ClosetCreate extends React.Component<Props, State> {
     render() {
         return (
             <div className="container">
-                <Button onClick={this.handleOpen} id="CreateButton" variant="outlined">Add To Your Digital Closet</Button>
+                <Button onClick={this.handleOpen} id="CreateButton" variant="outlined">Add to your digital closet</Button>
                 <Dialog open={this.state.handleopen} onClose={this.handleClose}>
                     <DialogTitle id="CreatePopup">
                         Add to closet!

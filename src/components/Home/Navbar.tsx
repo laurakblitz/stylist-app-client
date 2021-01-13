@@ -14,6 +14,7 @@ import Login from '../Auth/Login';
 type Props = {
     onClick: () => void;
     token: string;
+    // updateToken: (newToken: string) => void;
 };
 
 export default class Navbar extends React.Component<Props> {

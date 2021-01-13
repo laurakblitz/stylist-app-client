@@ -22,7 +22,6 @@ export default class Home extends React.Component<Props> {
                 <Navbar onClick={this.props.clickLogout} token={this.props.token} />
                 <ClosetIndex token={this.props.token} />
                 <WishlistIndex token={this.props.token} />
-
             </div>
         );
     }

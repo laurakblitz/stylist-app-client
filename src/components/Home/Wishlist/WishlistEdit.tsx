@@ -2,10 +2,15 @@ import React from 'react';
 import APIURL from '../../../helpers/environment';
 import {
     Button,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
     FormGroup,
     Dialog,
     TextField,
 } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
 type Props = {
     updateWishlist: any,
@@ -71,23 +76,37 @@ export default class WishlistEdit extends React.Component<Props, State> {
     render() {
         return (
             <div className="container">
-                <Dialog open={true}>
-                    <FormGroup>
+                <Dialog open={true} onClose={this.handleClose}>
+                <DialogTitle id="CreatePopup">
+                        Make a change to your wishlist!
+                    </DialogTitle>
+                    <DialogContent id="Create">
+                    {/* <FormGroup> */}
                         <input
                             accept="image/*"
                             className="input"
                             multiple
                             type="file"
-                            onChange={this.singleFileChangeHandler}
-                        />
+                            onChange={this.singleFileChangeHandler}/>
+                            <label htmlFor="icon-button-file">
+                            <IconButton color="primary" aria-label="upload picture" component="span">
+                                <PhotoCamera />
+                            </IconButton>
+                        </label>
+                        <br/>
+                        <br/>
                         <TextField
                             className="modal-text-field"
                             value={this.state.editComment}
                             onChange={(e) => this.setState({ editComment: e.target.value })}
-                            label="Edit Comment"
-                        />
-                        <Button type="submit" onClick={this.handleSubmitUpdate}>Update</Button>
-                    </FormGroup>
+                            label="Edit Comment"/>
+                            <DialogActions>
+                        <label htmlFor="contained-button-file">
+                        <Button variant="contained" color="primary" component="span" onClick={this.handleSubmitUpdate}>Update</Button>
+                        </label>
+                        </DialogActions>
+                    {/* </FormGroup> */}
+                    </DialogContent>
                 </Dialog>
             </div>
         )
