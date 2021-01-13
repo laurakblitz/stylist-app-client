@@ -85,6 +85,12 @@ export default class Register extends React.Component<Props, State> {
         })
     }
 
+    // setRole(event: string) {
+    //     this.setState({
+    //         role: (event),
+    //     })
+    // }
+
     render() {
         return (
             <div>
@@ -120,7 +126,7 @@ export default class Register extends React.Component<Props, State> {
                             fullWidth
                             onChange={(e) => this.setPassword(e.target.value)}
                         />
-                        {/* <input
+                        {/* <TextField
                             placeholder="User/Admin"
                             onChange={(e) => this.setState({role: e.target.value})}
                         /> */}
