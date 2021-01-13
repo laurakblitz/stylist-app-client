@@ -1,5 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, /*Route, Switch*/ } from 'react-router-dom';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
 import Navbar from './Navbar';
 import ClosetIndex from './Closet/ClosetIndex';
@@ -14,13 +19,10 @@ export default class Home extends React.Component<Props> {
     render() {
         return (
             <div className="container">
-            <React.Fragment>
-                <Router>
-                        <Navbar onClick={this.props.clickLogout} token={this.props.token} />
-                        <ClosetIndex token={this.props.token} />
-                        <WishlistIndex token={this.props.token} />
-                </Router>
-            </React.Fragment>
+                <Navbar onClick={this.props.clickLogout} token={this.props.token} />
+                <ClosetIndex token={this.props.token} />
+                <WishlistIndex token={this.props.token} />
+
             </div>
         );
     }

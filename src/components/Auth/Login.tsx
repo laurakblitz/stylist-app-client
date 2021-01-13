@@ -1,6 +1,7 @@
 import React from 'react';
 import APIURL from '../../helpers/environment';
 import { 
+    AppBar,
     Button, 
     // Container,  
     Dialog, 
@@ -79,12 +80,12 @@ export default class Login extends React.Component<Props, State> {
     render() {
         return (
             <div>
-                <Button onClick={this.handleOpen} id="LoginButton">
-                    <strong>LOGIN</strong>
+                <Button onClick={this.handleOpen} id="LoginButton" variant="outlined">
+                    <strong>Login</strong>
                 </Button>
                 <Dialog open={this.state.handleopen} onClose={this.handleClose}>
-                    <DialogTitle id="dialogTitle">
-                        <strong>LOGIN</strong>
+                    <DialogTitle /*id="dialogTitle"*/ id="form-dialog-title">
+                        <strong>Login</strong>
                     </DialogTitle>
                     <DialogContent id="Login">
                         <TextField

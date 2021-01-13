@@ -88,12 +88,12 @@ export default class Register extends React.Component<Props, State> {
     render() {
         return (
             <div>
-                <Button onClick={this.handleOpen} id="RegisterButton">
-                    <strong>SIGN UP</strong>
+                <Button onClick={this.handleOpen} id="RegisterButton" variant="outlined">
+                    <strong>Sign Up</strong>
                 </Button>
                 <Dialog open={this.state.handleopen} onClose={this.handleClose}>
                     <DialogTitle id="dialogTitle">
-                        <strong>SIGN UP</strong>
+                        <strong>Sign Up</strong>
                     </DialogTitle>
                     <DialogContent id="Register">
                         <TextField

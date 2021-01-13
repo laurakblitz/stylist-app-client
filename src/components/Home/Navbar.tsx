@@ -4,8 +4,12 @@ import {
     Toolbar,
     Typography,
     ButtonGroup,
-    Button
+    Button,
+    IconButton
 } from '@material-ui/core';
+
+import Register from '../Auth/Register';
+import Login from '../Auth/Login';
 
 type Props = {
     onClick: () => void;
@@ -45,15 +49,13 @@ export default class Navbar extends React.Component<Props> {
         return (
             <div className="container">
                 <AppBar position="static">
+                <Typography className="root" variant="h5">StyList</Typography>
                     <Toolbar className="root">
                         <ButtonGroup>
-                                <Button id="LogoutBtn" onClick={this.props.onClick}>
-                                    LOGOUT
-                                </Button>
+                        <Button variant="outlined" color="inherit" onClick={this.props.onClick}>Logout</Button>
                         </ButtonGroup>
                     </Toolbar>
                 </AppBar>
-                <Typography className="root" variant="h5" noWrap>StyList</Typography>
             </div>
         );
     }

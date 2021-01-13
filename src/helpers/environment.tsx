@@ -9,7 +9,7 @@ switch (window.location.hostname) {
 
     case 'lb-stylist-client.herokuapp.com':
 
-    APIURL = 'https://lb-stylist-client.herokuapp.com'
+    APIURL = 'https://lb-stylist-server.herokuapp.com'
 }
 
 export default APIURL;

@@ -1,10 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
 
 import Home from './components/Home/Home';
 import Auth from './components/Auth/Auth';
-import Navbar from './components/Home/Navbar';
 
 type Props = {
     token: string | null
@@ -41,21 +39,21 @@ export default class App extends React.Component<{}, Props> {
     }
 
     viewConductor = () => {
-        return (!this.state.token ?
+        return !this.state.token ? (
             <div>
-                <Router>
-                    <Auth updateToken={this.updateToken.bind(this)} />
-                </Router>
+                <Auth updateToken={this.updateToken.bind(this)} />
             </div>
-            : <Home clickLogout={this.logout.bind(this)} token={this.state.token} />)
-    }
+        ) : (
+                <Home clickLogout={this.logout.bind(this)} token={this.state.token} />
+            );
+    };
+
 
     render() {
         return (
             <div>
                 {this.viewConductor()}
-                {/* <Auth updateToken={this.updateToken.bind(this)} />
-                <Home clickLogout={this.logout.bind(this)} token={this.state.sessionToken} /> */}
+                {/* <Auth updateToken={this.updateToken.bind(this)} /> */}
             </div>
         );
     }
