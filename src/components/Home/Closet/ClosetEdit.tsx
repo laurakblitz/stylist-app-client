@@ -6,13 +6,13 @@ import {
     DialogActions,
     DialogContent,
     DialogTitle,
-    FormGroup,
     FormLabel,
     FormControl,
     FormControlLabel,
     Radio,
     RadioGroup,
 } from '@material-ui/core';
+
 import IconButton from '@material-ui/core/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 

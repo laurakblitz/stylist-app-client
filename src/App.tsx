@@ -9,7 +9,7 @@ type Props = {
 }
 
 export default class App extends React.Component<{}, Props> {
-    constructor(props: any) {
+    constructor(props: Props) {
         super(props);
         this.state = {
             token: ''
@@ -44,8 +44,7 @@ export default class App extends React.Component<{}, Props> {
                 <Auth updateToken={this.updateToken.bind(this)} />
             </div>
         ) : (
-                <Home clickLogout={this.logout.bind(this)} token={this.state.token} />
-            );
+                <Home clickLogout={this.logout.bind(this)} token={this.state.token} />)
     };
 
 
@@ -53,7 +52,6 @@ export default class App extends React.Component<{}, Props> {
         return (
             <div>
                 {this.viewConductor()}
-                {/* <Auth updateToken={this.updateToken.bind(this)} /> */}
             </div>
         );
     }

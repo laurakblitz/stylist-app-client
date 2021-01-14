@@ -14,7 +14,7 @@ type Props = {
 }
 
 type State = {
-    myWishlist: any,
+    myWishlist: Array<{ id: number, image: string, comment: string }>,
     updateWishlist: any,
     updateActive: boolean,
 }
@@ -50,7 +50,7 @@ export default class WishlistIndex extends React.Component<Props, State> {
         this.fetchWishlistPosts()
     }
 
-    editUpdateWishlist = (wishlist: any) => {
+    editUpdateWishlist = (wishlist: []) => {
         this.setState({
             updateWishlist: wishlist
         })

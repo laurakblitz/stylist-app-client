@@ -1,15 +1,14 @@
 import React from 'react';
 import APIURL from '../../helpers/environment';
-import { 
+import {
     AppBar,
-    Button, 
-    // Container,  
-    Dialog, 
-    DialogActions, 
-    DialogContent, 
-    DialogTitle, 
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
     TextField,
-    /*Typography*/ } from '@material-ui/core';
+} from '@material-ui/core';
 
 type Props = {
     login: boolean,

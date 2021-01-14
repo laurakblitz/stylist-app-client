@@ -14,7 +14,8 @@ type Props = {
 }
 
 type State = {
-    myCloset: any,
+    // myCloset: any,
+    myCloset: Array<{ id: number, image: string, category: number }>
     updateCloset: any,
     updateActive: boolean,
 }
@@ -50,7 +51,7 @@ export default class ClosetIndex extends React.Component<Props, State> {
         this.fetchClosetPosts()
     }
 
-    editUpdateCloset = (closet: any) => {
+    editUpdateCloset = (closet: []) => {
         this.setState({
             updateCloset: closet
         })
