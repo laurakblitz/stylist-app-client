@@ -31,7 +31,7 @@ export default class ClosetIndex extends React.Component<Props, State> {
     }
 
     fetchClosetPosts = () => {
-        fetch(`${APIURL}/closet/allclosetposts`, {
+        fetch(`${APIURL}/closet/allcloset`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
