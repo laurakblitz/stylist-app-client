@@ -1,7 +1,7 @@
 import React from 'react';
 import APIURL from '../../helpers/environment';
 import {
-    Button, 
+    Button,
     Dialog,
     DialogActions,
     DialogContent,
@@ -9,9 +9,18 @@ import {
     TextField,
 } from '@material-ui/core';
 
+type User =  {
+    token: string;
+    user: {
+        username: string;
+        id: string;
+    }
+}
+
 type Props = {
     login: boolean,
     updateToken: (newToken: string) => void,
+    // updateUser: (newUser: User) => void,
     toggle: () => void
 }
 
@@ -19,7 +28,6 @@ type State = {
     username: string,
     email: string,
     password: string,
-    // role: string,
     handleopen: boolean,
 }
 
@@ -30,7 +38,6 @@ export default class Register extends React.Component<Props, State> {
             username: '',
             email: '',
             password: '',
-            // role: '',
             handleopen: false,
         }
     }
@@ -43,7 +50,6 @@ export default class Register extends React.Component<Props, State> {
                 username: this.state.username,
                 email: this.state.email,
                 password: this.state.password,
-                // role: this.state.role,
             }),
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -52,8 +58,8 @@ export default class Register extends React.Component<Props, State> {
             .then((res) => res.json())
             .then(data => {
                 console.log(data)
+                this.props.updateToken(data.token);
                 this.handleClose();
-                this.props.updateToken(data.token)
             })
     }
 
@@ -84,12 +90,6 @@ export default class Register extends React.Component<Props, State> {
             password: (event)
         })
     }
-
-    // setRole(event: string) {
-    //     this.setState({
-    //         role: (event),
-    //     })
-    // }
 
     render() {
         return (
@@ -126,10 +126,6 @@ export default class Register extends React.Component<Props, State> {
                             fullWidth
                             onChange={(e) => this.setPassword(e.target.value)}
                         />
-                        {/* <TextField
-                            placeholder="User/Admin"
-                            onChange={(e) => this.setState({role: e.target.value})}
-                        /> */}
                     </DialogContent>
                     <DialogActions id="Registerbtn">
                         <Button onClick={this.handleSubmit} id="btn">

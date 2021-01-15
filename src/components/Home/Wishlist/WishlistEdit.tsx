@@ -35,7 +35,7 @@ export default class WishlistEdit extends React.Component<Props, State> {
         }
     }
 
-    handleSubmitUpdate = (event: any) => {
+    handleSubmitUpdate = () => {
         const editWishlist = new FormData()
         editWishlist.append('image', this.state.image)
         editWishlist.append('comment', this.state.editComment)

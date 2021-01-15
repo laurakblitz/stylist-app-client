@@ -47,7 +47,7 @@ export default class ClosetIndex extends React.Component<Props, State> {
             })
     }
 
-    componentDidMount() {
+    componentDidMount = () => {
         this.fetchClosetPosts()
     }
 

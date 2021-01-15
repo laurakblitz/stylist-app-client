@@ -9,8 +9,17 @@ import {
 import Login from './Login';
 import Register from './Register';
 
+type User =  {
+    token: string;
+    user: {
+        username: string;
+        id: string;
+    }
+}
+
 type Props = {
     updateToken: (newToken: string) => void;
+    // updateUser: (newUser: User) => void, 
 };
 
 type State = {
@@ -63,7 +72,7 @@ export default class Auth extends React.Component<Props, State> {
                             <Login
                                 login={this.state.login}
                                 toggle={this.toggle.bind(this)}
-                                updateToken={this.props.updateToken} />
+                                updateToken={this.props.updateToken}/>
                         </DialogTitle>
                     </DialogContent>
                     <DialogContent>

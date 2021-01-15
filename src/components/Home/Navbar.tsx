@@ -14,7 +14,6 @@ import Login from '../Auth/Login';
 type Props = {
     onClick: () => void;
     token: string;
-    // updateToken: (newToken: string) => void;
 };
 
 export default class Navbar extends React.Component<Props> {
@@ -48,19 +47,21 @@ export default class Navbar extends React.Component<Props> {
 
     render() {
         return (
-            <div className="container">
-                <AppBar position="static">
+            <AppBar position="static">
                 <Typography className="root" variant="h5">StyList</Typography>
-                    <Toolbar className="root">
-                        <ButtonGroup>
+                <Toolbar className="root">
+                    <ButtonGroup>
+                    <Button variant="outlined" color="inherit"><a href='/closet/allcloset' style={{ color: 'white', textDecoration: 'none' }}>Closet</a></Button>
+                        <Button variant="outlined" color="inherit"><a href='/wishlist/allwishlist' style={{ color: 'white', textDecoration: 'none' }}>Wishlist</a></Button>
+                        <Button variant="outlined" color="inherit"><a href='/users' style={{ color: 'white', textDecoration: 'none' }}>See Who Else is Using StyList</a></Button>
                         <Button variant="outlined" color="inherit" onClick={this.props.onClick}>Logout</Button>
-                        </ButtonGroup>
-                    </Toolbar>
-                </AppBar>
-            </div>
+                    </ButtonGroup>
+                </Toolbar>
+            </AppBar>
         );
     }
 }
+
 
 // import React from 'react';
 // import {

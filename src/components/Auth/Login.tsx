@@ -10,9 +10,18 @@ import {
     TextField,
 } from '@material-ui/core';
 
+type User =  {
+    token: string;
+    user: {
+        username: string;
+        id: string;
+    }
+}
+
 type Props = {
     login: boolean,
     updateToken: (newToken: string) => void,
+    // updateUser: (newUser: User) => void,
     // loginHandle: () => void
     toggle: () => void
 }

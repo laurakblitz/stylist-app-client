@@ -39,7 +39,7 @@ export default class ClosetEdit extends React.Component<Props, State> {
         }
     }
 
-    handleSubmitUpdate = (event: any) => {
+    handleSubmitUpdate = () => {
         const editCloset = new FormData()
         editCloset.append('image', this.state.image)
         editCloset.append('category', this.state.editCategory)

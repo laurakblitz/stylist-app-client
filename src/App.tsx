@@ -1,35 +1,79 @@
 import React from 'react';
+import APIURL from './helpers/environment';
 import './App.css';
 
 import Home from './components/Home/Home';
 import Auth from './components/Auth/Auth';
 
-type Props = {
-    token: string | null
+// type Props = {
+//     token: string
+// }
+
+type User = {
+    token: string;
+    user: {
+        username: string;
+        id: string;
+    }
 }
 
-export default class App extends React.Component<{}, Props> {
+type Props = {}
+
+type State = {
+    userId: string;
+    token: string;
+    // role: 'user' | 'admin';
+}
+
+export default class App extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {
-            token: ''
+            token: '',
+            userId: '',
         }
     }
 
-    componentDidMount() {
+    componentDidMount = () => {
         if (localStorage.getItem('token')) {
             this.setState({
-                token: localStorage.getItem('token')
+                token: localStorage.getItem('token') || ''
             })
         }
+    }
+
+    fetchUser = () => {
+        fetch(`${APIURL}/user/`, {
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': this.state.token
+            })
+        })
+            .then((res) => res.json())
+            .then((user) => {
+                this.setState({
+                    userId: user.id
+                })
+            })
     }
 
     updateToken = (newToken: string) => {
         localStorage.setItem('token', newToken);
         this.setState({
-            token: newToken
+            token: newToken,
         });
     }
+
+    // updateToken = (newUser: User) => {
+    //     const {token, user} = newUser;
+
+    //     localStorage.setItem('token', token);
+    //     this.setState({
+    //         token,
+    //         userId: user.id
+    //     });
+    // }
 
     logout = () => {
         localStorage.clear();
@@ -56,70 +100,3 @@ export default class App extends React.Component<{}, Props> {
         );
     }
 }
-
-// import React from 'react';
-// import { BrowserRouter as Router } from 'react-router-dom';
-// import './App.css';
-
-// import Home from './components/Home/Home';
-// import Navbar from './components/Home/Navbar';
-
-// export default class App extends React.Component {
-//     state = {
-//         sessionToken: ''
-//     }
-
-//     // export default class App extends React.Component {
-//     //     constructor(props: any) {
-//     //         super(props);
-//     //         this.state = {
-//     //             token: ''
-//     //         }
-//     //     }
-
-//     componentDidMount() {
-//         if (localStorage.getItem('token')) {
-//             this.setState({
-//                 sessionToken: localStorage.getItem('token')
-//             })
-//         }
-//     }
-
-//     updateToken = (newToken: string) => {
-//         localStorage.setItem('token', newToken);
-//         this.setState({
-//             sessionToken: newToken
-//         });
-//     }
-
-//     clearToken = () => {
-//         localStorage.clear();
-//         this.setState({
-//             sessionToken: ''
-//         })
-//     }
-
-//     // protectedViews = () => {
-//     //     return (this.state.sessionToken === localStorage.getItem('token') ?
-//     //         <div className="App">
-//     //             <Router>
-//     //                 <Home token={this.state.sessionToken} />
-//     //             </Router>
-//     //         </div>
-//     //         : <Navbar updateToken={this.updateToken.bind(this)} />)
-//     // }
-
-//     render() {
-//         return (
-//             <div>
-//                 {/* {this.protectedViews()} */}
-//                 <header className="app-header">
-//                     <Router>
-//                         <Navbar clickLogout={this.clearToken.bind(this)} updateToken={this.updateToken.bind(this)} token={this.state.sessionToken} />
-//                         <Home /*clearToken={this.clearToken.bind(this)} updateToken={this.updateToken.bind(this)}*/ token={this.state.sessionToken} />
-//                     </Router>
-//                 </header>
-//             </div>
-//         );
-//     }
-// }

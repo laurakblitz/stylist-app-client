@@ -1,12 +1,12 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+} from "react-router-dom";
 
 import Navbar from './Navbar';
+import UserList from './UserList';
 import ClosetIndex from './Closet/ClosetIndex';
 import WishlistIndex from './Wishlist/WishlistIndex';
 
@@ -16,12 +16,25 @@ type Props = {
 }
 
 export default class Home extends React.Component<Props> {
+
     render() {
         return (
             <div className="container">
                 <Navbar onClick={this.props.clickLogout} token={this.props.token} />
-                <ClosetIndex token={this.props.token} />
-                <WishlistIndex token={this.props.token} />
+                <Router>
+                {/* <ClosetIndex token={this.props.token} /> */}
+                    <Switch>
+                        <Route exact path="/closet/allcloset">
+                            <ClosetIndex token={this.props.token} />
+                        </Route>
+                        <Route exact path="/wishlist/allwishlist">
+                            <WishlistIndex token={this.props.token} />
+                        </Route>
+                        <Route exact path="/users">
+                        <UserList token={this.props.token} />
+                        </Route>
+                    </Switch>
+                </Router>
             </div>
         );
     }
